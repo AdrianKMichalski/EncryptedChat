@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
   <artifact type="war" name="morse:war">
     <output-path>$PROJECT_DIR$/cryptoservices/morse/target</output-path>
-    <root id="archive" name="morse-1.0-SNAPSHOT.war">
+    <root id="archive" name="morse.war">
       <element id="artifact" artifact-name="morse:war exploded" />
     </root>
   </artifact>

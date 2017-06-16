@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
   <artifact type="war" name="caesar:war">
     <output-path>$PROJECT_DIR$/cryptoservices/caesar/target</output-path>
-    <root id="archive" name="caesar-1.0-SNAPSHOT.war">
+    <root id="archive" name="caesar.war">
       <element id="artifact" artifact-name="caesar:war exploded" />
     </root>
   </artifact>

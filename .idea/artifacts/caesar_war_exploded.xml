@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="caesar:war exploded">
-    <output-path>$PROJECT_DIR$/cryptoservices/caesar/target/caesar-1.0-SNAPSHOT</output-path>
+    <output-path>$PROJECT_DIR$/cryptoservices/caesar/target/caesar</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -27,7 +27,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/cryptoservices/caesar/target/caesar-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/cryptoservices/caesar/target/caesar/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="caesar/web/Web" />
     </root>
