@@ -1,6 +1,6 @@
-package pwsr.encryptedchat.cryptoservices.caesar.coder.boundary;
+package pwsr.encryptedchat.cryptoservices.morse.coder.boundary;
 
-import pwsr.encryptedchat.cryptoservices.caesar.coder.control.MorseCoderService;
+import pwsr.encryptedchat.cryptoservices.morse.coder.control.MorseCoderService;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -10,15 +10,15 @@ import javax.ws.rs.QueryParam;
 /**
  * @author Adrian Michalski
  */
-@Path("encoder")
-public class MorseEncoderResource {
+@Path("decoder")
+public class MorseDecoderResource {
 
     @Inject
     MorseCoderService coderService;
 
     @GET
     public String decode(@QueryParam("message") String pMessage) {
-        return coderService.encode(pMessage);
+        return coderService.decode(pMessage);
     }
 
 }

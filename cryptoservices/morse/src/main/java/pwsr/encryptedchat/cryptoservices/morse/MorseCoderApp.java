@@ -1,4 +1,4 @@
-package pwsr.encryptedchat.cryptoservices.caesar;
+package pwsr.encryptedchat.cryptoservices.morse;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.GET;

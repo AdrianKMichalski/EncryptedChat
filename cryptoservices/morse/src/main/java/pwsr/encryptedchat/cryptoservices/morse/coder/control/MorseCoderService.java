@@ -1,4 +1,4 @@
-package pwsr.encryptedchat.cryptoservices.caesar.coder.control;
+package pwsr.encryptedchat.cryptoservices.morse.coder.control;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
