@@ -21,15 +21,11 @@ public class ReceiverClient {
 
     public Response sendMessage(String pReceiverUri, String pUserName, String pMessage) {
         return client.target(pReceiverUri)
+                .path("api")
                 .queryParam("user", pUserName)
                 .queryParam("message", pMessage)
                 .request()
                 .get();
     }
 
-//    public ForecastResponse getForecast(String place) {
-//        return target.queryParam("q", place)
-//                .request(MediaType.APPLICATION_JSON)
-//                .get(ForecastResponse.class);
-//    }
 }

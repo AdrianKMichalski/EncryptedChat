@@ -24,12 +24,9 @@ public class ChatUI extends UI {
     @Inject
     ChatBox chatBox;
 
-    @Inject
-    ReceiverClient receiverClient;
-
     private String userName;
     private String receiverAddress;
-    private String encodeServiceAddress;
+    private String cryptoServiceAddress;
 
     @Override
     protected void init(VaadinRequest request) {
@@ -58,7 +55,7 @@ public class ChatUI extends UI {
         layout.addComponent(receiverAddressField);
 
         TextField encodeServiceAddressField = new TextField("Adres usługi szyfrującej");
-        encodeServiceAddressField.addValueChangeListener(e -> encodeServiceAddress = e.getValue());
+        encodeServiceAddressField.addValueChangeListener(e -> cryptoServiceAddress = e.getValue());
         encodeServiceAddressField.setIcon(FontAwesome.EXPEDITEDSSL);
         layout.addComponent(encodeServiceAddressField);
         encodeServiceAddressField.setWidth("100%");
@@ -80,6 +77,7 @@ public class ChatUI extends UI {
         subWindow.setContent(chatBox);
         chatBox.setUserName(userName);
         chatBox.setReceiverAddress(receiverAddress);
+        chatBox.setCryptoServiceAddress(cryptoServiceAddress);
         chatBox.setSizeFull();
         return subWindow;
     }

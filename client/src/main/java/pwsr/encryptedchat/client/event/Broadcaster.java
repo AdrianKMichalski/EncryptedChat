@@ -22,7 +22,7 @@ public class Broadcaster implements Serializable {
     private javax.enterprise.event.Event<BroadcastMessage> messageEvent;
 
     private Collection<UI> uis = new HashSet<>();
-    private ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private ExecutorService executorService = Executors.newCachedThreadPool();
 
     public synchronized void register(UI listener) {
         uis.add(listener);

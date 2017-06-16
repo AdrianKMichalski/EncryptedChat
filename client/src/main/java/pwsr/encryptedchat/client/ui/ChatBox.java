@@ -4,6 +4,7 @@ import com.vaadin.cdi.UIScoped;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.server.Page;
 import com.vaadin.ui.*;
+import pwsr.encryptedchat.client.CryptoServiceClient;
 import pwsr.encryptedchat.client.ReceiverClient;
 import pwsr.encryptedchat.client.event.BroadcastMessage;
 import pwsr.encryptedchat.client.event.SentByBroadcaster;
@@ -24,11 +25,15 @@ public class ChatBox extends CustomComponent {
     ReceiverClient receiverClient;
 
     @Inject
+    CryptoServiceClient cryptoServiceClient;
+
+    @Inject
     @SentByClient
     private javax.enterprise.event.Event<BroadcastMessage> messageEvent;
 
     private String localUserName;
     private String receiverAddress;
+    private String cryptoServiceAddress;
 
     private TextArea textArea;
 
@@ -54,10 +59,12 @@ public class ChatBox extends CustomComponent {
         Button sendButton = new Button("Wyślij", e -> {
             String message = messageTextField.getValue();
 
-            // TODO: encode message
+            String encodedMessage = cryptoServiceClient.encodeMessage(cryptoServiceAddress, message);
+            new Notification("Informacja", "Zakodowana wiadomość: " + encodedMessage, Notification.Type.TRAY_NOTIFICATION, true).show(Page.getCurrent());
 
-            broadcast(message);
+            broadcast(encodedMessage);
             addMessage(localUserName, message);
+
             messageTextField.setValue("");
             messageTextField.focus();
         });
@@ -79,34 +86,27 @@ public class ChatBox extends CustomComponent {
         receiverAddress = pReceiverAddress;
     }
 
+    public void setCryptoServiceAddress(String pCryptoServiceAddress) {
+        cryptoServiceAddress = pCryptoServiceAddress;
+    }
+
     private void broadcast(String pMessageText) {
         messageEvent.fire(new BroadcastMessage(localUserName, pMessageText, this));
 
-        new Notification("Informacja",
-                "Rozpoczęcie wysyłania",
-                Notification.Type.TRAY_NOTIFICATION, true)
-                .show(Page.getCurrent());
-
         Response response = receiverClient.sendMessage(receiverAddress, localUserName, pMessageText);
-        if (Response.Status.Family.SUCCESSFUL.equals(response.getStatusInfo().getFamily())) {
-            new Notification("Informacja",
-                    "Wysyłanie powiodło się",
-                    Notification.Type.TRAY_NOTIFICATION, true)
-                    .show(Page.getCurrent());
-        } else {
-            new Notification("Informacja",
-                    "DUPA DUPA",
-                    Notification.Type.TRAY_NOTIFICATION, true)
-                    .show(Page.getCurrent());
 
+        if (!Response.Status.Family.SUCCESSFUL.equals(response.getStatusInfo().getFamily())) {
+            new Notification("Informacja", "Wysyłanie wiadomości nie powiodło się", Notification.Type.ERROR_MESSAGE, true).show(Page.getCurrent());
         }
     }
 
     @SuppressWarnings("unused")
     private void observeMessage(@Observes @SentByBroadcaster BroadcastMessage event) {
         if (event.getSender() != this) {
-            // TODO: decode message
-            addMessage(event.getUserName(), event.getText());
+            String encodedMessage = event.getText();
+            new Notification("Informacja", "Przyszła zakodowana wiadomość: " + encodedMessage, Notification.Type.TRAY_NOTIFICATION, true).show(Page.getCurrent());
+            String decodedMessage = cryptoServiceClient.decodeMessage(cryptoServiceAddress, encodedMessage);
+            addMessage(event.getUserName(), decodedMessage);
         }
     }
 
@@ -116,4 +116,5 @@ public class ChatBox extends CustomComponent {
         textArea.setCursorPosition(textArea.getValue().length());
         textArea.setReadOnly(true);
     }
+
 }
