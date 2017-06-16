@@ -20,6 +20,7 @@
 # Gradle:
 .idea/**/gradle.xml
 .idea/**/libraries
+.idea/
 
 # Mongo Explorer plugin:
 .idea/**/mongoSettings.xml
@@ -31,6 +32,7 @@
 
 # IntelliJ
 /out/
+*.iml
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
@@ -56,4 +58,3 @@ buildNumber.properties
 
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
-
