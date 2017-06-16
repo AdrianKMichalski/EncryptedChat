@@ -5,17 +5,24 @@ package pwsr.encryptedchat.cryptoservices.caesar.coder.control;
  */
 public class CaesarCoderService {
 
+    private static final int ALPHABET_SIZE = 26;
+
     public String shiftCharacters(String pMessage, int pShift) {
         StringBuilder result = new StringBuilder();
 
         for (char originalCharacter : pMessage.toCharArray()) {
-            char c = (char) (originalCharacter + pShift);
-            if (c > 'z') {
-                result.append((char) (originalCharacter - (26 - pShift)));
+            char shiftedCharacter = originalCharacter;
 
-            } else {
-                result.append((char) (originalCharacter + pShift));
+            if (Character.isLetter(originalCharacter)) {
+                shiftedCharacter = (char) (originalCharacter + pShift);
+
+                if ((Character.isLowerCase(originalCharacter) && shiftedCharacter > 'z')
+                        || (Character.isUpperCase(originalCharacter) && shiftedCharacter > 'Z')) {
+                    shiftedCharacter = (char) (originalCharacter - (ALPHABET_SIZE - pShift));
+                }
             }
+
+            result.append(shiftedCharacter);
         }
 
         return result.toString();
