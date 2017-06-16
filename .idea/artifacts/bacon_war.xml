@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="bacon:war">
+    <output-path>$PROJECT_DIR$/cryptoservices/bacon/target</output-path>
+    <root id="archive" name="bacon-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="bacon:war exploded" />
+    </root>
+  </artifact>
+</component>
