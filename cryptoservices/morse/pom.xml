@@ -12,6 +12,14 @@
     <artifactId>morse</artifactId>
     <packaging>war</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>21.0</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <finalName>morse</finalName>
         <plugins>
