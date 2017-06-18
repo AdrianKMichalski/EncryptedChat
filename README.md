@@ -33,8 +33,6 @@ W architekturze aplikacji wyróżniamy klienta oraz usługę szyfrującą. Są o
 ### Minimalna konfiguracja 
 Podstawowa konfiguracja składa się z 2 instancji klienta oraz 1 usługi szyfrującej.
 
-![Minimalna konfiguracja](img/architecture_minimal.png)
-
 **Schemat działania**:
 1. Użytkownik A wpisuje wiadomość oraz klika przycisk "Wyślij"
 2. Klient zwraca się do usługi szyfrującej z prośbą o zaszyfrowanie wiadomości
@@ -46,8 +44,6 @@ Podstawowa konfiguracja składa się z 2 instancji klienta oraz 1 usługi szyfru
 
 ### Konfiguracja z Load Balancerem
 Konfiguracja ta zakłada połączenie z pośrednictwem usługi przekierowującej ruch do jednej z kilku instancji usługi szyfrującej. Pozwala to na poziome skalowanie usługi, dzięki czemu eliminuje problemy z ograniczeniem wydajności pojedynczej maszyny, a w razie awarii jednej instancji, kolejne przejmują jej zadanie.
-
-![Wykorzystanie Load Balancera](img/architecture_load_balancer.png)
 
 ### Konfiguracja typu czat publiczny
 W tej konfiguracji użytkownik nie podaje adresu pojedynczego rozmówcy, lecz adres na którym działa aplikacja pokoju. Podczas połączenia z pokojem następuje wpisanie użytkownika do rejestru. Po dotarciu wiadomości do pokoju rozsyłana jest ona do wszystkich użytkowników w rejestrze.
@@ -108,13 +104,90 @@ Usługi szyfrujące udostępniają 2 endpointy:
 Na oba enpointy wysyłamy request **GET** z parametrem **message** pod którym przekazujemy wiadomość do zakodowania lub rozkodowania.
 
 ### Szyfr Cezara (moduł caesar)
-*TODO*
+Jest to jedna z najprostszych technik kodowania. Jest rodzajem szyfru podstawieniowego, gdzie każda litera zostaje zastąpiona inną, znajdującą się o stałą liczbę miejsc dalej w alfabecie. W tym przypadku wykorzystywany jest szyfr ROT13, gdzie litera przesuwana jest o 13 miejsc do przodu. 
+Przykład:
+Alfabet:  AĄBCĆDEĘFGHIJKLŁMNŃOÓPRSŚTUWYZŹŻ
+  Szyfr:  CĆDEĘFGHIJKLŁMNŃOÓPRSŚTUWYZŹŻAĄB
 ![Działanie szyfru Cezara](img/caesar_example.png)
 
 ### Szyfr Morse'a (moduł morse)
-*TODO*
+Najbardziej zaawansowany z spośród wykorzystanych sposobów kodowania. Szyfr ten, zamienia poszczególne litery alfabetu na znaki alfabetu Morse'a. 
+Schemat szyfru jest następujący:
+A . –
+
+B – ...
+
+C – . – .
+
+D – . .
+
+E .
+
+F . . – .
+
+G – . .
+
+H . . . .
+
+I . .
+
+J . – – –
+
+K – . –
+
+L . – . .
+
+M – –
+N – .
+
+O – – –
+
+P . – – .
+
+R . – .
+
+S . . .
+
+T –
+
+U . . –
+
+W . – –
+
+V . . . –
+
+X – . . –
+
+Y – . –
+
+Z – – . .
 ![Działanie szyfru Morse'a](img/morse_example.png)
 
 ### Szyfr Bacona (moduł bacon)
-*TODO*
+Ostatnia z wykorzystanych technik jest szyfrem, który zawiera pięcioliterowe ciągi składające się z liter "a" i "b". Każda wpisana przez użytkownika litera, posiada swój zamiennik w postaci ciągu powyższych znaków. 
+Schemat szyfru jest następujący:
+ A  = aaaaa
+ B  = aaaab
+ C  = aaaba
+ D  = aaabb
+ E  = aabaa
+ F  = aabab
+ G  = aabba
+ H  = aabbb
+I/J = abaaa
+ K  = abaab
+ L  = ababa
+ M  = ababb
+ N  = abbaa
+ O  = abbab
+ P  = abbba
+ Q  = abbbb
+ R  = baaaa
+ S  = baaab
+ T  = baaba
+U/V = baabb
+ W  = babaa
+ X  = babab
+ Y  = babba
+ Z  = babbb
 ![Działanie szyfru Morse'a](img/bacon_example.png)
