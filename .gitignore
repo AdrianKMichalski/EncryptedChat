@@ -59,3 +59,17 @@ buildNumber.properties
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
 /.idea/
+/.idea/artifacts/
+/.idea/artifacts/bacon_war.xml
+/.idea/artifacts/caesar_war_exploded.xml
+/.idea/artifacts/caesar_war.xml
+/.idea/artifacts/morse_war.xml
+/.idea/artifacts/client_war.xml
+/.idea/artifacts/morse_war_exploded.xml
+/.idea/artifacts/bacon_war_exploded.xml
+/.idea/artifacts/client_war_exploded.xml
+/.idea/deployment.xml
+/.idea/compiler.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/encodings.xml
