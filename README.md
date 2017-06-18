@@ -33,6 +33,8 @@ W architekturze aplikacji wyróżniamy klienta oraz usługę szyfrującą. Są o
 ### Minimalna konfiguracja 
 Podstawowa konfiguracja składa się z 2 instancji klienta oraz 1 usługi szyfrującej.
 
+![Minimalna konfiguracja](img/architecture_minimal.png)
+
 **Schemat działania**:
 1. Użytkownik A wpisuje wiadomość oraz klika przycisk "Wyślij"
 2. Klient zwraca się do usługi szyfrującej z prośbą o zaszyfrowanie wiadomości
