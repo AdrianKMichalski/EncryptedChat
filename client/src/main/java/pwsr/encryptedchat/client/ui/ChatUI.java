@@ -43,14 +43,12 @@ public class ChatUI extends UI {
         TextField userNameField = new TextField("Twój nick");
         userNameField.addValueChangeListener(e -> userName = e.getValue());
         userNameField.setIcon(FontAwesome.EYE);
-        userNameField.setRequiredIndicatorVisible(true);
         userNameField.setWidth("100%");
 
         layout.addComponent(userNameField);
         TextField receiverAddressField = new TextField("Adres rozmówcy");
         receiverAddressField.addValueChangeListener(e -> receiverAddress = e.getValue());
         receiverAddressField.setIcon(FontAwesome.USER);
-        receiverAddressField.setRequiredIndicatorVisible(true);
         receiverAddressField.setWidth("100%");
         layout.addComponent(receiverAddressField);
 
