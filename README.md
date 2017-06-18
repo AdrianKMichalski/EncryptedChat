@@ -108,13 +108,16 @@ Usługi szyfrujące udostępniają 2 endpointy:
 Na oba enpointy wysyłamy request **GET** z parametrem **message** pod którym przekazujemy wiadomość do zakodowania lub rozkodowania.
 
 ### Szyfr Cezara (moduł caesar)
-*TODO*
+Jest to jedna z najprostszych technik kodowania. Jest rodzajem szyfru podstawieniowego, gdzie każda litera zostaje zastąpiona inną, znajdującą się o stałą liczbę miejsc dalej w alfabecie. W tym przypadku wykorzystywany jest szyfr ROT13, gdzie litera przesuwana jest o 13 miejsc do przodu. Pozwala to na symetryczne szyfrowanie i rozszyfrowanie wiadomości.
+
 ![Działanie szyfru Cezara](img/caesar_example.png)
 
 ### Szyfr Morse'a (moduł morse)
-*TODO*
+Szyfr ten pozwala na zapis wiadomości w formie kropek i kresek. Jego ograniczeniem jest brak możliwości wykorzystania liter różnej wielkości.
+
 ![Działanie szyfru Morse'a](img/morse_example.png)
 
 ### Szyfr Bacona (moduł bacon)
-*TODO*
+Szyfr ten implementacyjnie jest niemal bliźniaczy do szyfrowania alfabetem Morse'a, lecz składa się on z 5 znakowych ciągów z liter `a` i `b`. Również brak tutaj możliwości wykorzystania liter różnej wielkości, co więcej litery I/J oraz U/W posiadają taki sam szyfr, więc z zaszyfrowaniem tracimy informację która to litera.
+
 ![Działanie szyfru Morse'a](img/bacon_example.png)
