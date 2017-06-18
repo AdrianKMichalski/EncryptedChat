@@ -104,12 +104,89 @@ Na oba enpointy wysyłamy request **GET** z parametrem **message** pod którym p
 
 ### Szyfr Cezara (moduł caesar)
 Jest to jedna z najprostszych technik kodowania. Jest rodzajem szyfru podstawieniowego, gdzie każda litera zostaje zastąpiona inną, znajdującą się o stałą liczbę miejsc dalej w alfabecie. W tym przypadku wykorzystywany jest szyfr ROT13, gdzie litera przesuwana jest o 13 miejsc do przodu. 
+Przykład:
+Alfabet:  AĄBCĆDEĘFGHIJKLŁMNŃOÓPRSŚTUWYZŹŻ
+  Szyfr:  CĆDEĘFGHIJKLŁMNŃOÓPRSŚTUWYZŹŻAĄB
 ![Działanie szyfru Cezara](img/caesar_example.png)
 
 ### Szyfr Morse'a (moduł morse)
 Najbardziej zaawansowany z spośród wykorzystanych sposobów kodowania. Szyfr ten, zamienia poszczególne litery alfabetu na znaki alfabetu Morse'a. 
+Schemat szyfru jest następujący:
+A . –
+
+B – ...
+
+C – . – .
+
+D – . .
+
+E .
+
+F . . – .
+
+G – . .
+
+H . . . .
+
+I . .
+
+J . – – –
+
+K – . –
+
+L . – . .
+
+M – –
+	N – .
+
+O – – –
+
+P . – – .
+
+R . – .
+
+S . . .
+
+T –
+
+U . . –
+
+W . – –
+
+V . . . –
+
+X – . . –
+
+Y – . –
+
+Z – – . .
 ![Działanie szyfru Morse'a](img/morse_example.png)
 
 ### Szyfr Bacona (moduł bacon)
-Ostatnia z wykorzystanych technik jest szyfrem, który zawiera pięcioliterowe ciągi składające się z liter "a" i "b".
+Ostatnia z wykorzystanych technik jest szyfrem, który zawiera pięcioliterowe ciągi składające się z liter "a" i "b". Każda wpisana przez użytkownika litera, posiada swój zamiennik w postaci ciągu powyższych znaków. 
+Schemat szyfru jest następujący:
+ A  = aaaaa
+ B  = aaaab
+ C  = aaaba
+ D  = aaabb
+ E  = aabaa
+ F  = aabab
+ G  = aabba
+ H  = aabbb
+I/J = abaaa
+ K  = abaab
+ L  = ababa
+ M  = ababb
+ N  = abbaa
+ O  = abbab
+ P  = abbba
+ Q  = abbbb
+ R  = baaaa
+ S  = baaab
+ T  = baaba
+U/V = baabb
+ W  = babaa
+ X  = babab
+ Y  = babba
+ Z  = babbb
 ![Działanie szyfru Morse'a](img/bacon_example.png)
