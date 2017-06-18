@@ -65,19 +65,51 @@ Po uruchomieniu aplikacji należy wpisać nick (nazwę użytkownika, która wyś
 - Obaj użytkownicy powinni używać usługi szyfrującej tego samego typu, w przeciwnym razie. Wyjątkiem od tej sytuacji może być użycie usługi tłumacza zamiast szyfrującej. W tym wypadku jeden rozmówca ustawia przykładowo usługę tłumaczącą z języka polskiego na język angielski, a drugi rozmówca usługe tłumaczącą z języka angielskiego na język polski.
 - Po kliknięciu "Uruchom czat" otwiera się okno czatu i można prowadzić rozmowę.
 
-![Działanie_klienta](img/client_conversation.gif)
+![Działanie klienta](img/client_conversation.gif)
 
-### Endpoint do przyjmowania wiadomości
-*TODO*
+### Technikalia
+
+#### Endpoint do przyjmowania wiadomości
+Za przyjmowanie wiadomości z zewnątrz odpowiada klasa `MessageEndpoint`.
+Wystawia ona endpoint pod ścieżką `/api`.
+Request **GET** na ten adres przyjmuje 2 parametry:
+- **user** - z nazwą nadawcy wiadomości
+- **message** - z zaszyfrowaną wiadomością
+Po przyjęciu danych za pomocą mechanizmu Eventów z Javy EE rozsyłana jest wiadomość poprzez usługę `Broadcaster` do wszystkich obserwatorów tego zdarzenia - tutaj są to wszystkie uruchomione widoki aplikacji klienta.
+
+#### Szyfrowanie/rozszyfrowanie wiadomości
+Za szyfrowanie wiadomości odpowiada klasa `CryptoServiceClient`.
+Wysyła ona pod adres usługi szyfrującej prośby o:
+- zaszyfrowanie widomości (ścieżka `/encoder`)
+- rozszyfrowanie wiadomości (ścieżka `/decoder`)
+
+Szyfrowanie ma miejsce po kliknięciu przycisku wyślij, a deszyfrowanie po odebraniu wiadomości z zewnątrz.
+
+#### Wysyłanie wiadomości do drugiego rozmówcy
+Za wysyłanie wiadomości na zewnątrz odpowiada klasa `ReceiverClient`. Wysyła ona zaszyfrowaną wiadomość pod adres odbiorcy na ścieżkę `/api` (opisane wyżej).
+
+#### Interfejs użytkownika
+Za wyświetlanie interfejsu użytkownika odpowiada klasa `ChatUI`. Pod rootowym adresem aplikacji udostępnia panel konfiguracji oraz otwiera okno rozmowy.
+
+Za zawartość okienka czatu odpowiada klasa `ChatBox`. To w niej zaimplementowano połączenie interfejsu graficznego oraz klientów do szyfrowania i wysyłania wiadomości.
 
 
 ## Usługi szyfrujące (moduł cryptoservices)
 
+### Opis
+Usługi szyfrujące udostępniają 2 endpointy:
+- `/encoder` - do szyfrowania wiadomości
+- `/decoder` - do rozszyfrowania wiadomości
+Na oba enpointy wysyłamy request **GET** z parametrem **message** pod którym przekazujemy wiadomość do zakodowania lub rozkodowania.
+
 ### Szyfr Cezara (moduł caesar)
 *TODO*
+![Działanie szyfru Cezara](img/caesar_example.png)
 
 ### Szyfr Morse'a (moduł morse)
 *TODO*
+![Działanie szyfru Morse'a](img/morse_example.png)
 
 ### Szyfr Bacona (moduł bacon)
 *TODO*
+![Działanie szyfru Morse'a](img/bacon_example.png)
