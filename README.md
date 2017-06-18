@@ -47,6 +47,8 @@ Podstawowa konfiguracja składa się z 2 instancji klienta oraz 1 usługi szyfru
 ### Konfiguracja z Load Balancerem
 Konfiguracja ta zakłada połączenie z pośrednictwem usługi przekierowującej ruch do jednej z kilku instancji usługi szyfrującej. Pozwala to na poziome skalowanie usługi, dzięki czemu eliminuje problemy z ograniczeniem wydajności pojedynczej maszyny, a w razie awarii jednej instancji, kolejne przejmują jej zadanie.
 
+![Wykorzystanie Load Balancera](img/architecture_load_balancer.png)
+
 ### Konfiguracja typu czat publiczny
 W tej konfiguracji użytkownik nie podaje adresu pojedynczego rozmówcy, lecz adres na którym działa aplikacja pokoju. Podczas połączenia z pokojem następuje wpisanie użytkownika do rejestru. Po dotarciu wiadomości do pokoju rozsyłana jest ona do wszystkich użytkowników w rejestrze.
 
