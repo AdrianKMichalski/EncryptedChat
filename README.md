@@ -52,6 +52,7 @@ Konfiguracja ta zakłada połączenie z pośrednictwem usługi przekierowującej
 ### Konfiguracja typu czat publiczny
 W tej konfiguracji użytkownik nie podaje adresu pojedynczego rozmówcy, lecz adres na którym działa aplikacja pokoju. Podczas połączenia z pokojem następuje wpisanie użytkownika do rejestru. Po dotarciu wiadomości do pokoju rozsyłana jest ona do wszystkich użytkowników w rejestrze.
 
+![Wykorzystanie publicznego pokoju](img/architecture_public_room.png)
 
 ## Klient (moduł client)
 
